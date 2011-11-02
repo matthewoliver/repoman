@@ -8,8 +8,10 @@ CONFIG_SERVER_URL = "server_url"
 class config_manager():
 	__config_items=None	
 	__config_file=None
+	__repoman=None
 
-	def __init__(self, config_file):
+	def __init__(self, repoman, config_file):
+		self.__repoman = repoman
 		self.__config_items=[]
 		self.__config_file=config_file
 
@@ -22,3 +24,10 @@ class config_manager():
 			return __config_items[key]
 		else:
 			return None
+
+
+class ConfigException(Exception):
+	def __init__(self, value):
+		self.value = value
+	def __str__(self):
+		return repr(self.value)
